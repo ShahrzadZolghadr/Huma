@@ -65,7 +65,7 @@ Invoices requiring human intervention are automatically routed into a review wor
           ┌───────────────────────┼────────────────────────┐
           │                       │                        │
           ▼                       ▼                        ▼
-   Auto Processing         Draft Processing        Duplicate Invoice
+   1. Auto Processing         2. Draft Processing        3. Duplicate Invoice
           │                       │                        │
           │                       │                        ▼
           │                       │                 Ignore Processing
@@ -82,7 +82,7 @@ Invoices requiring human intervention are automatically routed into a review wor
                     Processing Complete
 
 
-                    Unknown Supplier
+                    4. Unknown Supplier
                            │
                            ▼
                  Create Odoo Review Task
