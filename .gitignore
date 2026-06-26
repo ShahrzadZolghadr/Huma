@@ -32,19 +32,6 @@ env/
 run_demo.py
 test_odoo.py
 
-# Runtime Data
-
-data/emails/
-data/invoices/
-data/review/
-data/processed/
-
-# Keep folder structure
-!data/emails/.gitkeep
-!data/invoices/.gitkeep
-!data/review/.gitkeep
-!data/processed/.gitkeep
-
 # SQLite
 
 *.db

@@ -1,0 +1,10 @@
+{
+    "id": "email001",
+    "sender": "billing@google.com",
+    "subject": "Google Cloud Invoice INV-2026-15",
+    "body": "Please find attached invoice.",
+    "received_at": "2026-06-26T10:00:00",
+    "attachments": [
+        "Sample Invoices/01_AWS.pdf"
+    ]
+}

@@ -61,28 +61,28 @@ Duplicate Detection
     ▼
 Decision Engine
     │
-    ├──────────────┐
-    ▼              ▼
+    ├────────────────────────────┐
+    ▼                            ▼
 
-Auto Processing    Human Review
+Auto Processing             Human Review
 
-    │              │
+    │                             │
 
-Create Vendor Bill Create Review Task
+Create Vendor Bill       Create Review Task
 
-Attach PDF         Attach PDF
+Attach PDF               Attach PDF
 
-Audit Log          Audit Log
+Audit Log                Audit Log
 
-Chatter Message    Chatter Message
+Chatter Message          Chatter Message
 
 Post/Draft Bill
 
-    │              │
+    │                            │
 
-    ▼              ▼
+    ▼                            ▼
 
-Completed      Waiting for Review
+Completed                Waiting for Review
 ```
 
 ---
@@ -116,18 +116,18 @@ Duplicate Check
 
 Policy Engine
 
-      │
+         │
 
- ┌────┴────┐
+ ┌───────┴────────────┐
 
- ▼         ▼
+ ▼                    ▼
 
 Validate Bill   Human Review
-      |
+         │
 
- ┌────┴────┐
+ ┌───────┴────────────┐
 
- ▼         ▼
+ ▼                    ▼
 Draft Bill      Create Bill
 
       │
@@ -184,16 +184,28 @@ Every workflow execution records audit events including:
 
 # Running
 
-Run in background
+Run this two commands to run postgres and odoo containers
 
 ```bash
-docker compose up -d --build
+docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres --name db postgres:15
+
+docker run -p 8069:8069 --name odoo --link db:db -t odoo
 ```
 
-Or run locally
+Then run following command to create virtual environment and activate it
 
 ```bash
+python3.12 -m venv venv
+source venv/bin/activate
 python agent_runner.py
+```
+
+Open new terminal and run these command to populate data
+
+```bash
+python3.12 -m venv venv
+source venv/bin/activate
+python simulate_email_feed.py
 ```
 
 ---
