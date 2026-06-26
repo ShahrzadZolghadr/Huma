@@ -1,0 +1,64 @@
+# Python
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual Environment
+
+venv/
+.venv/
+env/
+
+# Environment Variables
+
+.env
+
+# IDE
+
+.vscode/
+.idea/
+
+# macOS
+
+.DS_Store
+
+# Local Test Scripts
+
+run_demo.py
+test_odoo.py
+
+# Runtime Data
+
+data/emails/
+data/invoices/
+data/review/
+data/processed/
+
+# Keep folder structure
+!data/emails/.gitkeep
+!data/invoices/.gitkeep
+!data/review/.gitkeep
+!data/processed/.gitkeep
+
+# SQLite
+
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+
+*.log
+
+# LangSmith (optional)
+
+.langsmith/
+
+# Docker
+
+*.pid

@@ -1,0 +1,17 @@
+Huma — Approved Supplier List,,,,,,,,,,
+Vendor-validation source for the invoicing agent. A vendor bill may be posted automatically only if the supplier appears here with Status = Approved. Vendors not on this list must be routed to a manual Supplier Evaluation (SE) review.,,,,,,,,,,
+,,,,,,,,,,
+Supplier ID,Vendor (Partner) Name,Registered / Legal Name,Category,Status,Default Payment Terms,Currency,VAT / Tax ID,Date Approved,Approved By,Notes
+SUP-0001,Amazon Web Services EMEA SARL,Amazon Web Services EMEA SARL,Cloud / Infrastructure,Approved,Card on file,USD,LU 26888617,2024-02-11,A. Okafor (Finance),Auto-charged monthly.
+SUP-0002,Google Cloud EMEA Limited,Google Cloud EMEA Limited,Cloud / Infrastructure,Approved,Net 30,EUR,IE 6388047V,2024-02-11,A. Okafor (Finance),Reverse-charge VAT.
+SUP-0003,Atlassian Pty Ltd,Atlassian Pty Ltd,Software / SaaS,Approved,Net 30,USD,ABN 53 102 443 916,2024-05-03,R. Mehta (Procurement),Annual subscriptions.
+SUP-0004,"Functional Software, Inc. (Sentry)","Functional Software, Inc.",Software / SaaS,Approved,Card on file,USD,EIN 47-3946560,2024-09-18,R. Mehta (Procurement),"Monthly, paid by card."
+SUP-0005,Communere Ltd,Communere Ltd,Clinical content / Services,Approved,Net 14,GBP,GB 388 1947 22,2023-11-30,A. Okafor (Finance),Standard VAT 20%.
+SUP-0006,"GitHub, Inc.","GitHub, Inc.",Software / SaaS,Approved,Net 30,USD,EIN 80-0642970,2024-06-22,R. Mehta (Procurement),"Enterprise, annual."
+SUP-0007,Slack Technologies Limited,Slack Technologies Limited,Software / SaaS,Approved,Net 30,GBP,IE 3336483GH,2024-01-15,A. Okafor (Finance),
+SUP-0008,"Notion Labs, Inc.","Notion Labs, Inc.",Software / SaaS,Approved,Card on file,USD,EIN 82-2729671,2025-03-02,R. Mehta (Procurement),
+SUP-0009,Microsoft Ireland Operations Ltd,Microsoft Ireland Operations Ltd,Software / SaaS,Approved,Net 30,EUR,IE 8256796U,2023-08-09,A. Okafor (Finance),
+SUP-0010,"Datadog, Inc.","Datadog, Inc.",Software / SaaS,Approved,Net 30,USD,EIN 27-2825585,2025-01-20,R. Mehta (Procurement),
+SUP-0011,Adobe Systems Software Ireland Ltd,Adobe Systems Software Ireland Ltd,Software / SaaS,Approved,Net 30,EUR,IE 6364992H,2024-04-12,A. Okafor (Finance),
+,,,,,,,,,,
+Note:,"Vendors that appear on incoming invoices but are NOT listed above (e.g. ""Northwind Office Supplies Ltd"") are unapproved and must be flagged for Supplier Evaluation (SE), not posted.",,,,,,,,,
