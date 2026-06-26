@@ -29,112 +29,74 @@ Invoices requiring human intervention are automatically routed into a review wor
 
 ---
 
-# Workflow
+# High-level Architecture
 
-```
-Email Inbox
-    │
-    ▼
-Email Monitor
-    │
-    ▼
-PDF Detection
-    │
-    ▼
-PDF Text Extraction
-    │
-    ▼
-Invoice Extraction Agent
-(OpenAI Structured Output)
-    │
-    ▼
-Invoice Validation
-    │
-    ▼
-Supplier Matching Agent
-(LLM + Odoo Suppliers)
-    │
-    ▼
-Duplicate Detection
-(Odoo)
-    │
-    ▼
-Decision Engine
-    │
-    ├────────────────────────────┐
-    ▼                            ▼
+```text
+                           Incoming Emails
+                                  │
+                                  ▼
+                           Email Monitoring
+                                  │
+                                  ▼
+                           PDF Identification
+                                  │
+                                  ▼
+                        LangGraph Workflow Engine
+                                  │
+                                  ▼
+                     PDF Text Extraction (PyMuPDF)
+               (Future: OpenAI OCR / Vision Models)
+                                  │
+                                  ▼
+                     Invoice Extraction Agent (LLM)
+                    (OpenAI Structured Output)
+                                  │
+                                  ▼
+                         Validation Layer
+                ┌────────────────────────────────┐
+                │ • Invoice Schema Validation    │
+                │ • Supplier Matching (LLM)      │
+                │ • Duplicate Detection (Odoo)   │
+                └────────────────────────────────┘
+                                  │
+                                  ▼
+                           Policy Engine
+                                  │
+          ┌───────────────────────┼────────────────────────┐
+          │                       │                        │
+          ▼                       ▼                        ▼
+   Auto Processing         Draft Processing        Duplicate Invoice
+          │                       │                        │
+          │                       │                        ▼
+          │                       │                 Ignore Processing
+          │                       │
+          ▼                       ▼
+    Create Vendor Bill     Create Draft Bill
+    Attach PDF             Attach PDF
+    Audit Log              Audit Log
+    Post Bill              Leave as Draft
+          │                       │
+          └───────────────┬───────┘
+                          │
+                          ▼
+                    Processing Complete
 
-Auto Processing             Human Review
 
-    │                             │
-
-Create Vendor Bill       Create Review Task
-
-Attach PDF               Attach PDF
-
-Audit Log                Audit Log
-
-Chatter Message          Chatter Message
-
-Post/Draft Bill
-
-    │                            │
-
-    ▼                            ▼
-
-Completed                Waiting for Review
-```
-
----
-
-# LangGraph Workflow
-
-```
-START
-
-↓
-
-Extract PDF Text
-
-↓
-
-Extract Invoice Data
-
-↓
-
-Validate Invoice
-
-↓
-
-Validate Supplier
-
-↓
-
-Duplicate Check
-
-↓
-
-Policy Engine
-
-         │
-
- ┌───────┴────────────┐
-
- ▼                    ▼
-
-Validate Bill   Human Review
-         │
-
- ┌───────┴────────────┐
-
- ▼                    ▼
-Draft Bill      Create Bill
-
-      │
-
-      ▼
-
-END
+                    Unknown Supplier
+                           │
+                           ▼
+                 Create Odoo Review Task
+                 Attach Original PDF
+                 Audit Log
+                           │
+                           ▼
+              Human Creates / Approves Supplier
+                           │
+                           ▼
+              Review Folder Retry Processor
+                    (Background Worker)
+                           │
+                           └──────────────► Re-enter LangGraph Workflow
 ```
 
 ---
